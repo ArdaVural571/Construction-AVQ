@@ -761,7 +761,11 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em;
   color: var(--gris); font-weight: 700; margin-bottom: 10px;
 }
-.coord dd { margin: 0; font-size: 1.02rem; font-weight: 600; }
+.coord dd { margin: 0; font-size: 1.02rem; font-weight: 600; overflow-wrap: anywhere; }
+/* Les adresses courriel longues doivent tenir dans leur colonne sans la faire déborder. */
+.courriel { overflow-wrap: anywhere; }
+.coord dd .courriel { font-size: 0.95rem; letter-spacing: -0.005em; }
+.pied .courriel { overflow-wrap: anywhere; }
 .coord dd a { transition: color var(--transition); }
 .coord dd a:hover { color: var(--accent-fort); }
 .coord dd small { display: block; font-weight: 400; font-size: 0.86rem; color: var(--texte-doux); margin-top: 6px; }

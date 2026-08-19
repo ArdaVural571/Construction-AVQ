@@ -343,7 +343,7 @@
         lignes.push(texte + " : " + v);
       });
       var sujet = form.getAttribute("data-sujet") || "Demande — Construction AVQ inc.";
-      var destinataire = form.getAttribute("data-courriel") || "info@constructionavq.ca";
+      var destinataire = form.getAttribute("data-courriel") || "ardavuralavq@constructionavq.ca";
       var url = "mailto:" + destinataire +
         "?subject=" + encodeURIComponent(sujet) +
         "&body=" + encodeURIComponent(lignes.join("\n"));

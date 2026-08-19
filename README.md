@@ -59,15 +59,20 @@ suffit.
 
 | À remplacer | Valeur provisoire actuelle |
 |---|---|
-| Domaine (balises `canonical`, `og:url`, `sitemap.xml`, `robots.txt`) | `https://www.constructionavq.ca` |
-| Téléphone affiché | `514 555-0182` |
-| Téléphone en lien (`tel:`) | `+15145550182` |
-| Courriel | `info@constructionavq.ca` |
-| Adresse / ville | `Montréal (Québec)` |
+| Domaine (balises `canonical`, `og:url`, `sitemap.xml`, `robots.txt`) | `https://www.constructionavq.ca` — **à confirmer** |
+| Adresse postale complète | `Montréal (Québec)` |
+
+Les coordonnées suivantes sont les **valeurs réelles** de l’entreprise :
+
+| Donnée | Valeur |
+|---|---|
+| Téléphone | `514 404-7273` (lien `tel:+15144047273`) |
+| Courriel | `ardavuralavq@constructionavq.ca` |
+| Licence RBQ | `5880-6043-01` |
 
 ```bash
-# exemple (macOS/Linux)
-grep -rl "514 555-0182" . --include=*.html | xargs sed -i '' 's/514 555-0182/VOTRE NUMÉRO/g'
+# exemple de remplacement global (macOS/Linux)
+grep -rl "www.constructionavq.ca" . --include=*.html | xargs sed -i '' 's|www.constructionavq.ca|VOTRE-DOMAINE.ca|g'
 ```
 
 La **licence RBQ `5880-6043-01`** est en place : affichée dans le pied de page de chaque page,
@@ -75,6 +80,25 @@ mise en évidence sur la page *Contact* et déclarée dans les données structur
 (`identifier` du schéma `GeneralContractor`).
 
 ---
+
+### Liens courriel
+
+Toutes les adresses affichées sur le site sont des liens `mailto:`. Un clic ouvre le logiciel de
+messagerie du visiteur avec **l’adresse déjà inscrite dans le champ « À »** et un **objet
+prérempli** adapté à l’endroit du site où le lien a été cliqué :
+
+| Emplacement | Objet prérempli |
+|---|---|
+| Pied de page | `Question — Construction AVQ inc.` |
+| Menu mobile, page Contact | `Demande d’information — Construction AVQ inc.` |
+| Encadré de la page Soumission | `Demande de soumission — Construction AVQ inc.` |
+
+Le comportement dépend du poste du visiteur : le lien ouvre l’application définie comme
+**gestionnaire de courriel par défaut** (Mail, Outlook, Thunderbird…). Un visiteur qui utilise
+Gmail dans un navigateur sans l’avoir déclaré comme gestionnaire par défaut ne verra rien
+s’ouvrir — c’est une limite du protocole `mailto:`, commune à tous les sites web. C’est
+précisément pourquoi le formulaire de soumission reste le canal principal : il ne dépend
+d’aucune configuration côté visiteur.
 
 ## 4. Brancher les formulaires
 
