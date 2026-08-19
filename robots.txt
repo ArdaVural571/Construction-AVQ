@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /merci.html
 
-Sitemap: https://www.constructionavq.ca/sitemap.xml
+Sitemap: https://constructionavq.ca/sitemap.xml

@@ -59,21 +59,36 @@ suffit.
 
 | À remplacer | Valeur provisoire actuelle |
 |---|---|
-| Domaine (balises `canonical`, `og:url`, `sitemap.xml`, `robots.txt`) | `https://www.constructionavq.ca` — **à confirmer** |
 | Adresse postale complète | `Montréal (Québec)` |
 
-Les coordonnées suivantes sont les **valeurs réelles** de l’entreprise :
+Toutes les autres coordonnées sont les **valeurs réelles** de l’entreprise :
 
 | Donnée | Valeur |
 |---|---|
+| Domaine officiel | `https://constructionavq.ca` (sans `www`) |
 | Téléphone | `514 404-7273` (lien `tel:+15144047273`) |
 | Courriel | `ardavuralavq@constructionavq.ca` |
 | Licence RBQ | `5880-6043-01` |
 
-```bash
-# exemple de remplacement global (macOS/Linux)
-grep -rl "www.constructionavq.ca" . --include=*.html | xargs sed -i '' 's|www.constructionavq.ca|VOTRE-DOMAINE.ca|g'
-```
+Le domaine officiel est celui qui figure dans les balises `canonical`, les métadonnées Open Graph,
+`sitemap.xml` et `robots.txt`. **Configurer chez l’hébergeur une redirection permanente (301) de
+`www.constructionavq.ca` vers `constructionavq.ca`** : sans elle, les moteurs de recherche voient
+deux sites identiques et répartissent le référencement entre les deux.
+
+### Mettre le site en ligne sur ce domaine
+
+Le domaine n’a pas à être « transféré » : il reste chez votre registraire actuel. Il suffit de
+pointer ses enregistrements DNS vers l’hébergement choisi.
+
+1. Déposer le contenu de ce dépôt chez un hébergeur (Netlify, Vercel, GitHub Pages, ou tout
+   hébergement web classique par FTP — le site est statique, aucun serveur applicatif requis).
+2. Dans le panneau du registraire, remplacer les enregistrements DNS du domaine par ceux que
+   fournit l’hébergeur (généralement un enregistrement `A` pour `constructionavq.ca` et un
+   `CNAME` pour `www`).
+3. Activer le certificat HTTPS (gratuit et automatique chez la plupart des hébergeurs).
+4. Vérifier que `www` redirige bien vers la version sans `www`.
+
+La propagation DNS prend de quelques minutes à 24 heures.
 
 La **licence RBQ `5880-6043-01`** est en place : affichée dans le pied de page de chaque page,
 mise en évidence sur la page *Contact* et déclarée dans les données structurées de l’entreprise
