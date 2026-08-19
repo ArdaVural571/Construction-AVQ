@@ -1,0 +1,17 @@
+{
+  "name": "Construction AVQ inc.",
+  "short_name": "AVQ",
+  "lang": "fr-CA",
+  "description": "Entrepreneur général spécialisé en carrelage, gestion et gérance de chantier au Québec.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E0F11",
+  "theme_color": "#0E0F11",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
