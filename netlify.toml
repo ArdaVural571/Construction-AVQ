@@ -1,0 +1,33 @@
+# Configuration Netlify — Construction AVQ inc.
+# Site statique : aucune étape de compilation, les fichiers sont servis tels quels.
+
+[build]
+  publish = "."
+
+# Redirection de la variante www vers le domaine officiel (sans www),
+# afin que le référencement ne soit pas réparti entre deux adresses identiques.
+[[redirects]]
+  from = "https://www.constructionavq.ca/*"
+  to = "https://constructionavq.ca/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Les ressources statiques peuvent être mises en cache longtemps.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Les pages HTML doivent être revalidées à chaque visite.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

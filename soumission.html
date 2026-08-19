@@ -98,8 +98,10 @@
         <p class="eyebrow">Formulaire</p>
         <h2>Votre demande</h2>
         <p class="lead" style="margin-bottom:36px">Les champs marqués d’un astérisque sont obligatoires. Tout le reste nous aide simplement à mieux préparer notre réponse.</p>
-        <form class="form" data-form id="form-soumission" method="post" action="#VOTRE-ENDPOINT"
+        <form class="form" data-form id="form-soumission" method="post" action="/merci.html"
+      name="soumission" data-netlify="true" data-netlify-honeypot="_confirmation"
       data-sujet="Demande de soumission — Construction AVQ inc." data-courriel="ardavuralavq@constructionavq.ca" enctype="multipart/form-data">
+  <input type="hidden" name="form-name" value="soumission">
   <input type="hidden" name="_sujet" value="Demande de soumission — Construction AVQ inc.">
   <div class="pot-de-miel" aria-hidden="true">
     <label for="form-soumission-conf">Ne pas remplir</label>
@@ -146,7 +148,7 @@
       <label for="form-soumission-fichiers">Photos ou plans <span style="color:var(--gris);font-weight:400">(facultatif)</span></label>
       <div class="depot" tabindex="0" role="button" aria-controls="form-soumission-fichiers">
         <strong>Joindre des fichiers</strong>
-        <span>Glissez vos photos ou plans ici, ou cliquez pour les sélectionner.<br>Formats acceptés&nbsp;: JPG, PNG, HEIC, PDF — 10 Mo maximum par fichier.</span>
+        <span>Glissez vos photos ou plans ici, ou cliquez pour les sélectionner.<br>JPG, PNG, HEIC ou PDF — 2 fichiers, 2 Mo chacun au maximum.<br>Vous en avez davantage&nbsp;? Envoyez-les par courriel après l’envoi du formulaire.</span>
         <input id="form-soumission-fichiers" type="file" name="fichiers" multiple accept="image/*,.pdf,.heic">
         <ul class="depot__liste"></ul>
       </div>

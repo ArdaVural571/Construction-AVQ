@@ -51,17 +51,17 @@ Puis ouvrir <http://localhost:8080>.
 
 ---
 
-## 3. À personnaliser avant la mise en ligne
+## 3. Coordonnées
 
-Les coordonnées du site sont des **valeurs provisoires**. Elles apparaissent dans chaque page
-(en-tête, pied de page, formulaires, données structurées) ; une recherche-remplacement globale
-suffit.
+Les coordonnées apparaissent dans chaque page (en-tête, pied de page, formulaires, données
+structurées). Elles sont centralisées : une recherche-remplacement globale suffit à les faire
+évoluer.
 
-| À remplacer | Valeur provisoire actuelle |
-|---|---|
-| Adresse postale complète | `Montréal (Québec)` |
+Un seul élément reste générique : l’**adresse postale**, indiquée `Montréal (Québec)`. La préciser
+(rue, ville, code postal) renforcerait le référencement local, notamment en vue d’une fiche Google
+Business Profile. À faire seulement si vous acceptez de rendre cette adresse publique.
 
-Toutes les autres coordonnées sont les **valeurs réelles** de l’entreprise :
+Toutes les autres valeurs sont celles de l’entreprise :
 
 | Donnée | Valeur |
 |---|---|
@@ -115,36 +115,117 @@ s’ouvrir — c’est une limite du protocole `mailto:`, commune à tous les si
 précisément pourquoi le formulaire de soumission reste le canal principal : il ne dépend
 d’aucune configuration côté visiteur.
 
-## 4. Brancher les formulaires
+## 4. Les formulaires
 
-Les formulaires (`contact.html` et `soumission.html`) sont fonctionnels côté navigateur
-(validation, pièces jointes, anti-pourriel) mais **ne sont reliés à aucun service d’envoi**.
-Tant qu’aucun service n’est configuré, l’envoi ouvre le logiciel de messagerie du visiteur avec une
-demande préremplie — rien n’est perdu, mais un vrai service est recommandé.
+Les deux formulaires (`contact.html` et `soumission.html`) sont **branchés sur Netlify Forms**.
+Aucun service tiers, aucun compte supplémentaire : dès que le site est déployé sur Netlify, les
+demandes arrivent dans le tableau de bord (onglet *Forms*) et une notification peut être envoyée
+par courriel à chaque réception.
 
-### Option A — Netlify Forms (si hébergé sur Netlify)
+| Formulaire | Nom côté Netlify | Redirection après envoi |
+|---|---|---|
+| Page Contact | `contact` | `/merci.html` |
+| Page Soumission | `soumission` | `/merci.html` |
 
-Ajouter sur chaque balise `<form>` : `netlify` et `netlify-honeypot="_confirmation"`, puis
-remplacer `action="#VOTRE-ENDPOINT"` par `action="/merci.html"`.
+**Activer les notifications** : Netlify → *Site configuration* → *Forms* → *Form notifications* →
+*Add notification* → *Email notification*, avec `ardavuralavq@constructionavq.ca`.
 
-### Option B — Formspree, Web3Forms, Basin…
+### Limite importante : les pièces jointes
 
-Remplacer l’attribut `action` du formulaire par l’adresse fournie par le service :
+Le forfait gratuit de Netlify Forms accepte **100 demandes par mois**, ce qui est largement
+suffisant. En revanche il ne stocke que **10 Mo de pièces jointes par mois**, avec un maximum de
+8 Mo par envoi.
 
-```html
-<form class="form" data-form id="form-soumission" method="post"
-      action="https://formspree.io/f/VOTRE_ID" enctype="multipart/form-data" novalidate>
-```
+Une demande refusée par le service est une demande perdue sans que personne ne le sache. Le
+formulaire est donc borné côté navigateur : **2 fichiers de 2 Mo maximum**. Au-delà, l’envoi est
+bloqué avec un message clair invitant à retirer les fichiers et à les transmettre par courriel —
+la demande part quand même.
 
-Le script détecte automatiquement qu’un service est configuré (dès que `action` ne contient plus
-`VOTRE-ENDPOINT`) et laisse l’envoi se faire normalement. Rediriger ensuite vers `merci.html`.
+La page de confirmation (`merci.html`) propose d’ailleurs systématiquement d’envoyer photos et
+plans par courriel, avec un lien `mailto:` prérempli.
 
-Le champ caché `_confirmation` est un **pot de miel** anti-pourriel : il doit rester vide et être
-déclaré comme tel auprès du service choisi.
+Si les clients envoient régulièrement des photos, deux possibilités :
 
----
+- activer le forfait payant *Forms Level 1* chez Netlify, puis desserrer `MAX_FICHIERS` et
+  `MAX_TAILLE` en tête de la section formulaires dans `assets/js/main.js` ;
+- ou conserver le fonctionnement actuel, les photos arrivant par courriel.
 
-## 5. Remplacer les illustrations par de vraies photos
+### Changer de service d’envoi
+
+Pour utiliser Formspree, Web3Forms ou un autre service à la place de Netlify Forms, remplacer
+l’attribut `action` du formulaire par l’adresse fournie par le service et retirer les attributs
+`data-netlify`. Le script détecte automatiquement un `action` configuré et laisse l’envoi se faire
+normalement.
+
+> ⚠️ Ne jamais laisser un `action` qui pointe vers une page sans traitement : le formulaire
+> semblerait fonctionner tout en jetant les demandes silencieusement.
+
+## 5. Mise en ligne
+
+Situation actuelle du domaine `constructionavq.ca` :
+
+| Élément | Fournisseur | Ce qu’on en fait |
+|---|---|---|
+| Enregistrement du domaine | Squarespace | **On le garde** — rien à transférer |
+| Courriel professionnel | Titan | **On n’y touche pas** — enregistrements MX inchangés |
+| Site web | Squarespace | **On le déplace** vers Netlify |
+
+Squarespace ne peut pas héberger ce site : le mode « Developer », qui permettait d’envoyer du code
+sur mesure, n’existe plus sur la version 7.1. Seules l’injection de code et des retouches CSS
+restent possibles.
+
+### Étape 1 — Déployer sur Netlify
+
+1. Créer un compte gratuit sur [netlify.com](https://www.netlify.com) et choisir *Add new site* →
+   *Import an existing project* → *GitHub*.
+2. Sélectionner ce dépôt et la branche voulue. Netlify lit `netlify.toml` : aucune commande de
+   compilation, dossier publié à la racine.
+3. Le site est immédiatement accessible sur une adresse temporaire en `.netlify.app`. **Tout
+   vérifier à cette étape, avant de toucher au domaine.**
+
+### Étape 2 — Pointer le domaine, sans casser le courriel
+
+Dans Squarespace : *Domains* → `constructionavq.ca` → *DNS* → *DNS Settings* → *Custom records*.
+
+**À modifier — les enregistrements du site web :**
+
+| Action | Type | Hôte | Valeur |
+|---|---|---|---|
+| Supprimer | `A` | `@` | `198.185.159.144` |
+| Supprimer | `A` | `@` | `198.185.159.145` |
+| Supprimer | `A` | `@` | `198.49.23.144` |
+| Supprimer | `A` | `@` | `198.49.23.145` |
+| Ajouter | `A` | `@` | `75.2.60.5` |
+| Modifier | `CNAME` | `www` | `VOTRE-SITE.netlify.app` |
+
+**À ne surtout pas toucher — les enregistrements du courriel Titan :**
+
+| Type | Hôte | Valeur |
+|---|---|---|
+| `MX` | `@` | `mx1.titan.email` (priorité 10) |
+| `MX` | `@` | `mx2.titan.email` (priorité 20) |
+| `TXT` | `@` | les enregistrements SPF / DKIM de Titan |
+
+Les enregistrements `A` et `CNAME` désignent le serveur du **site web**. Les `MX` et `TXT`
+désignent celui du **courriel**. Les deux sont indépendants : changer les premiers ne perturbe pas
+le second, à condition de ne pas les supprimer par mégarde.
+
+### Étape 3 — Finaliser
+
+1. Dans Netlify : *Domain management* → ajouter `constructionavq.ca` comme **domaine principal**
+   et `www.constructionavq.ca` comme alias.
+2. Activer le certificat HTTPS (bouton *Verify DNS configuration* puis *Provision certificate*).
+3. La propagation DNS prend de quelques minutes à 48 heures.
+4. Vérifier que `www.constructionavq.ca` redirige bien vers `constructionavq.ca`, **et envoyer un
+   courriel de test à votre adresse Titan.**
+
+### Étape 4 — Une fois tout vérifié
+
+L’abonnement *site web* de Squarespace peut être résilié : chez Squarespace, les abonnements sont
+indépendants. Résilier le site ne touche ni le domaine ni Titan, qui se facturent séparément. Les
+conserver actifs est indispensable — sans le domaine, ni le site ni le courriel ne fonctionnent.
+
+## 6. Remplacer les illustrations par de vraies photos
 
 Les visuels de `assets/img/` sont des **illustrations vectorielles générées** (chantier, carrelage,
 plans, textures). Elles tiennent lieu de photographies en attendant les images réelles de
@@ -171,7 +252,7 @@ toujours renseigner l’attribut `alt`.
 
 ---
 
-## 6. Ajouter un projet à la galerie
+## 7. Ajouter un projet à la galerie
 
 Dans `realisations.html`, dupliquer un bloc `<button class="projet">` et adapter ses attributs
 `data-*` — le script alimente la fiche détaillée à partir d’eux :
@@ -197,7 +278,7 @@ Catégories disponibles : `carrelage`, `salles-de-bain`, `renovation`, `construc
 
 ---
 
-## 7. Référencement (SEO)
+## 8. Référencement (SEO)
 
 Chaque page comporte un titre et une description uniques (dans les longueurs recommandées),
 une URL canonique, des balises Open Graph et Twitter, et des **données structurées JSON-LD** :
@@ -218,7 +299,7 @@ Search Console et créer une fiche Google Business Profile avec les mêmes coord
 
 ---
 
-## 8. Design
+## 9. Design
 
 Le système visuel est centralisé dans les variables CSS en tête de `assets/css/style.css` :
 
@@ -236,7 +317,7 @@ neutralisées si le visiteur a activé « réduire les animations ».
 
 ---
 
-## 9. Compatibilité et accessibilité
+## 10. Compatibilité et accessibilité
 
 - Testé de 360 px à 1920 px : aucun débordement horizontal.
 - Navigation clavier complète, lien d’évitement, `aria-*` sur le menu, la galerie modale et le

@@ -239,8 +239,11 @@
   });
 
   /* ------------------------------------------------------------- Formulaires */
-  var MAX_FICHIERS = 8;
-  var MAX_TAILLE = 10 * 1024 * 1024; // 10 Mo par fichier
+  // Netlify Forms (forfait gratuit) : 8 Mo par envoi et 10 Mo de pièces jointes
+  // par mois. On borne donc côté navigateur : une demande ne doit JAMAIS être
+  // rejetée par le service d'envoi, sinon le client est perdu sans le savoir.
+  var MAX_FICHIERS = 2;
+  var MAX_TAILLE = 2 * 1024 * 1024; // 2 Mo par fichier
 
   $$(".depot").forEach(function (depot) {
     var input = $('input[type="file"]', depot);
@@ -249,12 +252,35 @@
 
     function rendre(fichiers) {
       liste.innerHTML = "";
-      Array.prototype.slice.call(fichiers).slice(0, MAX_FICHIERS).forEach(function (f) {
+      var refuses = [];
+      Array.prototype.slice.call(fichiers).forEach(function (f, i) {
         var li = document.createElement("li");
         var mo = (f.size / (1024 * 1024)).toFixed(1);
-        li.textContent = f.name + " — " + mo + " Mo" + (f.size > MAX_TAILLE ? " (trop volumineux)" : "");
+        var trop_gros = f.size > MAX_TAILLE;
+        var en_trop = i >= MAX_FICHIERS;
+        li.textContent = f.name + " — " + mo + " Mo" +
+          (trop_gros ? " — trop volumineux (2 Mo maximum)" : "") +
+          (en_trop ? " — au-delà de 2 fichiers" : "");
+        if (trop_gros || en_trop) {
+          li.style.color = "#B3261E";
+          refuses.push(f.name);
+        }
         liste.appendChild(li);
       });
+      depot.setAttribute("data-refuses", refuses.length ? "1" : "");
+      var avis = depot.parentNode.querySelector(".depot__avis");
+      if (refuses.length) {
+        if (!avis) {
+          avis = document.createElement("p");
+          avis.className = "depot__avis champ__erreur";
+          avis.style.display = "block";
+          depot.parentNode.appendChild(avis);
+        }
+        avis.textContent = "Retirez les fichiers signalés en rouge, ou envoyez-les-nous " +
+          "par courriel après avoir soumis le formulaire.";
+      } else if (avis) {
+        avis.remove();
+      }
     }
     depot.addEventListener("click", function (e) { if (e.target !== input) input.click(); });
     depot.addEventListener("keydown", function (e) {
@@ -309,6 +335,15 @@
       var miel = $('input[name="_confirmation"]', form);
       if (miel && miel.value) { e.preventDefault(); return; }
 
+      var depot_refuse = form.querySelector('.depot[data-refuses="1"]');
+      if (depot_refuse) {
+        e.preventDefault();
+        messager("Certaines pièces jointes dépassent les limites acceptées (2 fichiers de 2 Mo). " +
+                 "Retirez-les et envoyez-les-nous plutôt par courriel — votre demande partira aussitôt.", true);
+        depot_refuse.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
       if (!form.checkValidity()) {
         e.preventDefault();
         $$("input, select, textarea", form).forEach(function (ch) {
@@ -335,7 +370,7 @@
       var d = new FormData(form);
       var lignes = [];
       d.forEach(function (v, k) {
-        if (k.charAt(0) === "_" || !String(v).trim()) return;
+        if (k.charAt(0) === "_" || k === "form-name" || !String(v).trim()) return;
         var lbl = form.querySelector('[name="' + k + '"]');
         var texte = lbl && lbl.closest(".champ") && $("label", lbl.closest(".champ"))
           ? $("label", lbl.closest(".champ")).textContent.replace("*", "").trim()
