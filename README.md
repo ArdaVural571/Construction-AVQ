@@ -64,15 +64,15 @@ suffit.
 | Téléphone en lien (`tel:`) | `+15145550182` |
 | Courriel | `info@constructionavq.ca` |
 | Adresse / ville | `Montréal (Québec)` |
-| **Licence RBQ** | `Licence RBQ — à compléter` |
 
 ```bash
 # exemple (macOS/Linux)
 grep -rl "514 555-0182" . --include=*.html | xargs sed -i '' 's/514 555-0182/VOTRE NUMÉRO/g'
 ```
 
-> ⚠️ Le champ **licence RBQ** doit être renseigné avec le numéro réel de l’entreprise, ou retiré.
-> Aucun numéro fictif n’a été inscrit.
+La **licence RBQ `5880-6043-01`** est en place : affichée dans le pied de page de chaque page,
+mise en évidence sur la page *Contact* et déclarée dans les données structurées de l’entreprise
+(`identifier` du schéma `GeneralContractor`).
 
 ---
 
