@@ -138,7 +138,7 @@
 <rect x="638.4" y="508.4" width="26.3" height="26.3" fill="#FFFFFF" opacity="0.17"/>
 <rect x="667.7" y="508.4" width="26.3" height="26.3" fill="#FFFFFF" opacity="0.08"/>
 <rect x="697.0" y="508.4" width="26.3" height="26.3" fill="#FFFFFF" opacity="0.11"/>
-<rect x="321" y="516" width="398" height="5" fill="#C08A4A" opacity="0.9"/>
+<rect x="321" y="516" width="398" height="5" fill="#E0A33E" opacity="0.9"/>
 <path d="M-360.0 1500.0 L-120.0 1500.0 L28.6 1283.3 L-161.9 1283.3 Z" fill="#B0A899" stroke="#8A8175" stroke-opacity="0.75" stroke-width="3.2"/>
 <path d="M-120.0 1500.0 L120.0 1500.0 L219.0 1283.3 L28.6 1283.3 Z" fill="#B0A899" stroke="#8A8175" stroke-opacity="0.75" stroke-width="3.2"/>
 <path d="M120.0 1500.0 L360.0 1500.0 L409.5 1283.3 L219.0 1283.3 Z" fill="#CCC5B9" stroke="#8A8175" stroke-opacity="0.75" stroke-width="3.2"/>

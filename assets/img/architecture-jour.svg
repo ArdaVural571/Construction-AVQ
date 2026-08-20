@@ -9,7 +9,7 @@
 <rect x="120" y="8" width="96" height="84" fill="url(#gl)"/>
 <rect x="232" y="8" width="96" height="84" fill="url(#gl)"/>
 <rect x="344" y="8" width="96" height="84" fill="url(#gl)"/>
-<rect x="344" y="8" width="96" height="84" fill="#C08A4A" opacity="0.26"/>
+<rect x="344" y="8" width="96" height="84" fill="#E0A33E" opacity="0.26"/>
 <rect x="456" y="8" width="96" height="84" fill="url(#gl)"/>
 <rect x="568" y="8" width="96" height="84" fill="url(#gl)"/>
 <rect x="680" y="8" width="96" height="84" fill="url(#gl)"/>
@@ -27,11 +27,11 @@
 <rect x="232" y="208" width="96" height="84" fill="url(#gl)"/>
 <rect x="344" y="208" width="96" height="84" fill="url(#gl)"/>
 <rect x="456" y="208" width="96" height="84" fill="url(#gl)"/>
-<rect x="456" y="208" width="96" height="84" fill="#C08A4A" opacity="0.15"/>
+<rect x="456" y="208" width="96" height="84" fill="#E0A33E" opacity="0.15"/>
 <rect x="568" y="208" width="96" height="84" fill="url(#gl)"/>
 <rect x="680" y="208" width="96" height="84" fill="url(#gl)"/>
 <rect x="792" y="208" width="96" height="84" fill="url(#gl)"/>
-<rect x="792" y="208" width="96" height="84" fill="#C08A4A" opacity="0.22"/>
+<rect x="792" y="208" width="96" height="84" fill="#E0A33E" opacity="0.22"/>
 <rect x="112" y="200" width="784" height="6" fill="#A8ACB0" opacity="0.8"/>
 <rect x="120" y="308" width="96" height="84" fill="url(#gl)"/>
 <rect x="232" y="308" width="96" height="84" fill="url(#gl)"/>
@@ -51,22 +51,22 @@
 <rect x="112" y="400" width="784" height="6" fill="#A8ACB0" opacity="0.8"/>
 <rect x="120" y="508" width="96" height="84" fill="url(#gl)"/>
 <rect x="232" y="508" width="96" height="84" fill="url(#gl)"/>
-<rect x="232" y="508" width="96" height="84" fill="#C08A4A" opacity="0.30"/>
+<rect x="232" y="508" width="96" height="84" fill="#E0A33E" opacity="0.30"/>
 <rect x="344" y="508" width="96" height="84" fill="url(#gl)"/>
 <rect x="456" y="508" width="96" height="84" fill="url(#gl)"/>
-<rect x="456" y="508" width="96" height="84" fill="#C08A4A" opacity="0.19"/>
+<rect x="456" y="508" width="96" height="84" fill="#E0A33E" opacity="0.19"/>
 <rect x="568" y="508" width="96" height="84" fill="url(#gl)"/>
 <rect x="680" y="508" width="96" height="84" fill="url(#gl)"/>
 <rect x="792" y="508" width="96" height="84" fill="url(#gl)"/>
 <rect x="112" y="500" width="784" height="6" fill="#A8ACB0" opacity="0.8"/>
 <rect x="120" y="608" width="96" height="84" fill="url(#gl)"/>
-<rect x="120" y="608" width="96" height="84" fill="#C08A4A" opacity="0.28"/>
+<rect x="120" y="608" width="96" height="84" fill="#E0A33E" opacity="0.28"/>
 <rect x="232" y="608" width="96" height="84" fill="url(#gl)"/>
 <rect x="344" y="608" width="96" height="84" fill="url(#gl)"/>
-<rect x="344" y="608" width="96" height="84" fill="#C08A4A" opacity="0.17"/>
+<rect x="344" y="608" width="96" height="84" fill="#E0A33E" opacity="0.17"/>
 <rect x="456" y="608" width="96" height="84" fill="url(#gl)"/>
 <rect x="568" y="608" width="96" height="84" fill="url(#gl)"/>
-<rect x="568" y="608" width="96" height="84" fill="#C08A4A" opacity="0.25"/>
+<rect x="568" y="608" width="96" height="84" fill="#E0A33E" opacity="0.25"/>
 <rect x="680" y="608" width="96" height="84" fill="url(#gl)"/>
 <rect x="792" y="608" width="96" height="84" fill="url(#gl)"/>
 <rect x="112" y="600" width="784" height="6" fill="#A8ACB0" opacity="0.8"/>
@@ -83,9 +83,9 @@
 <rect x="344" y="808" width="96" height="84" fill="url(#gl)"/>
 <rect x="456" y="808" width="96" height="84" fill="url(#gl)"/>
 <rect x="568" y="808" width="96" height="84" fill="url(#gl)"/>
-<rect x="568" y="808" width="96" height="84" fill="#C08A4A" opacity="0.18"/>
+<rect x="568" y="808" width="96" height="84" fill="#E0A33E" opacity="0.18"/>
 <rect x="680" y="808" width="96" height="84" fill="url(#gl)"/>
-<rect x="680" y="808" width="96" height="84" fill="#C08A4A" opacity="0.22"/>
+<rect x="680" y="808" width="96" height="84" fill="#E0A33E" opacity="0.22"/>
 <rect x="792" y="808" width="96" height="84" fill="url(#gl)"/>
 <rect x="112" y="800" width="784" height="6" fill="#A8ACB0" opacity="0.8"/>
 <rect x="112" y="0" width="5" height="900" fill="#B0B4B8" opacity="0.85"/>

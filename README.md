@@ -3,7 +3,7 @@
 Site vitrine de **Construction AVQ inc.**, entrepreneur général québécois spécialisé en
 **carrelage, gestion et gérance de chantier**.
 
-> **Construire avec rigueur. Réaliser avec précision.**
+> **Bâtir avec vision. Réaliser avec précision.**
 > Construction • Rénovation • Carrelage • Gestion de chantier
 
 Site statique, **sans dépendance ni étape de compilation** : du HTML, une feuille de style et un
@@ -225,7 +225,32 @@ L’abonnement *site web* de Squarespace peut être résilié : chez Squarespace
 indépendants. Résilier le site ne touche ni le domaine ni Titan, qui se facturent séparément. Les
 conserver actifs est indispensable — sans le domaine, ni le site ni le courriel ne fonctionnent.
 
-## 6. Remplacer les illustrations par de vraies photos
+## 6. Le logo
+
+Le logo est une **reproduction vectorielle** du logo fourni par le client, déclinée en quatre
+fichiers :
+
+| Fichier | Usage |
+|---|---|
+| `logo-avq.svg` | Logo complet, pour fond clair (documents, données structurées) |
+| `logo-avq-clair.svg` | Logo complet, pour fond sombre — utilisé dans le pied de page |
+| `logo-marque.svg` | Symbole seul (immeubles + rubans), fond clair |
+| `logo-marque-clair.svg` | Symbole seul, fond sombre — utilisé dans l’en-tête |
+
+**Pourquoi deux versions.** Sous 60 px de hauteur, les mots « construction » et « inc. » du logo
+complet deviennent illisibles. L’en-tête utilise donc le symbole seul, accompagné du nom composé
+dans la typographie du site : la marque reste reconnaissable et le nom parfaitement net. Le pied
+de page, qui dispose de plus d’espace, affiche le logo complet.
+
+**Pour utiliser le fichier original** plutôt que la reproduction : déposer le fichier dans
+`assets/img/` et remplacer les `src` correspondants. Prévoir une version claire pour les fonds
+sombres — le bleu marine du logo est invisible sur l’anthracite du site.
+
+Les couleurs du site sont alignées sur celles du logo : le doré `#E0A33E` sert d’accent, et sa
+variante foncée `#8F6612` est réservée au texte sur fond clair, où le doré n’offrirait pas un
+contraste suffisant (2,2:1 contre 5,1:1).
+
+## 7. Remplacer les illustrations par de vraies photos
 
 Les visuels de `assets/img/` sont des **illustrations vectorielles générées** (chantier, carrelage,
 plans, textures). Elles tiennent lieu de photographies en attendant les images réelles de
@@ -252,7 +277,7 @@ toujours renseigner l’attribut `alt`.
 
 ---
 
-## 7. Ajouter un projet à la galerie
+## 8. Ajouter un projet à la galerie
 
 Dans `realisations.html`, dupliquer un bloc `<button class="projet">` et adapter ses attributs
 `data-*` — le script alimente la fiche détaillée à partir d’eux :
@@ -278,7 +303,7 @@ Catégories disponibles : `carrelage`, `salles-de-bain`, `renovation`, `construc
 
 ---
 
-## 8. Référencement (SEO)
+## 9. Référencement (SEO)
 
 Chaque page comporte un titre et une description uniques (dans les longueurs recommandées),
 une URL canonique, des balises Open Graph et Twitter, et des **données structurées JSON-LD** :
@@ -299,7 +324,7 @@ Search Console et créer une fiche Google Business Profile avec les mêmes coord
 
 ---
 
-## 9. Design
+## 10. Design
 
 Le système visuel est centralisé dans les variables CSS en tête de `assets/css/style.css` :
 
@@ -308,8 +333,9 @@ Le système visuel est centralisé dans les variables CSS en tête de `assets/cs
 | `--noir` | `#0E0F11` | fonds sombres, sections d’accent |
 | `--anthracite` / `--graphite` | `#16181C` / `#22252A` | surfaces secondaires |
 | `--gris` / `--gris-pale` | `#6E7378` / `#F4F5F6` | textes secondaires, fonds clairs |
-| `--accent` | `#C08A4A` | bronze — couleur d’accent unique |
-| `--accent-fort` | `#A6712F` | accent sur fond clair (contraste du texte) |
+| `--accent` | `#E0A33E` | doré du logo — couleur d’accent unique |
+| `--accent-fort` | `#8F6612` | accent sur fond clair (contraste du texte) |
+| `--marine` | `#1B3663` | bleu marine du logo |
 
 Typographie : **Archivo** pour les titres, **Inter** pour le texte courant (chargées depuis Google
 Fonts, avec repli sur les polices système). Animations volontairement discrètes et intégralement
@@ -317,7 +343,7 @@ neutralisées si le visiteur a activé « réduire les animations ».
 
 ---
 
-## 10. Compatibilité et accessibilité
+## 11. Compatibilité et accessibilité
 
 - Testé de 360 px à 1920 px : aucun débordement horizontal.
 - Navigation clavier complète, lien d’évitement, `aria-*` sur le menu, la galerie modale et le
