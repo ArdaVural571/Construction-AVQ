@@ -216,18 +216,16 @@ p:last-child { margin-bottom: 0; }
 
 /* Logo */
 .logo { display: flex; align-items: center; gap: 13px; flex: none; }
-.logo__marque {
-  width: 42px; height: 42px; flex: none;
-  display: grid; place-items: center;
-  background: var(--accent); color: var(--noir);
-  font-family: var(--font-titre); font-weight: 800; font-size: 0.94rem; letter-spacing: -0.03em;
-  transition: transform var(--transition);
+.logo__image {
+  height: 54px; width: auto; display: block; flex: none;
+  transition: height var(--transition), opacity var(--transition);
 }
-.logo:hover .logo__marque { transform: rotate(-4deg); }
+.entete.is-compact .logo__image { height: 46px; }
+.logo:hover .logo__image { opacity: 0.86; }
 
-/* Emplacement prévu pour le vrai logo, lorsqu'il sera fourni en fichier.
-   Il suffira de remplacer le <span class="logo__marque"> par une <img> :
-   .logo__marque--image { width: auto; height: 46px; background: none; display: block; } */
+/* Pied de page : le logo respire davantage. */
+.logo--pied .logo__image { height: auto; width: 250px; max-width: 100%; }
+
 .logo__texte { display: flex; flex-direction: column; line-height: 1.05; }
 .logo__nom {
   font-family: var(--font-titre); font-weight: 800; font-size: 1.02rem;
