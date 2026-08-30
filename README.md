@@ -67,7 +67,7 @@ Toutes les autres valeurs sont celles de l’entreprise :
 |---|---|
 | Domaine officiel | `https://constructionavq.ca` (sans `www`) |
 | Téléphone | `514 404-7273` (lien `tel:+15144047273`) |
-| Courriel | `ardavuralavq@constructionavq.ca` |
+| Courriel | `info@constructionavq.ca` |
 | Licence RBQ | `5880-6043-01` |
 
 Le domaine officiel est celui qui figure dans les balises `canonical`, les métadonnées Open Graph,
@@ -128,7 +128,7 @@ par courriel à chaque réception.
 | Page Soumission | `soumission` | `/merci.html` |
 
 **Activer les notifications** : Netlify → *Site configuration* → *Forms* → *Form notifications* →
-*Add notification* → *Email notification*, avec `ardavuralavq@constructionavq.ca`.
+*Add notification* → *Email notification*, avec `info@constructionavq.ca`.
 
 ### Limite importante : les pièces jointes
 
