@@ -594,6 +594,15 @@ p:last-child { margin-bottom: 0; }
   transition: opacity var(--transition);
 }
 .projet__txt { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(20px, 2.4vw, 30px); }
+
+/* Vitrine de la page Carrelage : une seule étiquette à lire, donc un voile
+   bien plus léger — les photos doivent rester le sujet. */
+.projet--vitrine { cursor: default; }
+.projet--vitrine .projet__voile {
+  background: linear-gradient(to top,
+    rgba(14,15,17,0.80) 0%, rgba(14,15,17,0.38) 26%, rgba(14,15,17,0.04) 62%, transparent 100%);
+}
+.projet--vitrine:hover .projet__img img { transform: scale(1.04); }
 .projet__cat, .projet__titre, .projet__meta { display: block; }
 .projet__cat {
   font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.18em;
