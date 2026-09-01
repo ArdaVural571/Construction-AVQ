@@ -889,6 +889,17 @@ p:last-child { margin-bottom: 0; }
   color: var(--accent);
 }
 
+/* Deux photographies côte à côte, contenues dans la largeur du site :
+   au-delà, elles dépasseraient leur définition native et perdraient leur netteté. */
+.paire-photos { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 1.5vw, 20px); }
+.paire-photos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+@media (max-width: 700px) {
+  /* Empilées, deux images en 4/5 rempliraient presque tout l'écran :
+     on resserre le cadrage plutôt que d'imposer un long défilement. */
+  .paire-photos { grid-template-columns: 1fr; }
+  .paire-photos img { aspect-ratio: 1 / 1; }
+}
+
 /* Bandeau image pleine largeur */
 .bande-image { position: relative; height: clamp(280px, 44vw, 520px); overflow: hidden; background: var(--noir); }
 .bande-image img { width: 100%; height: 100%; object-fit: cover; }
