@@ -623,42 +623,13 @@ p:last-child { margin-bottom: 0; }
 .projet:hover .projet__plus { opacity: 1; transform: none; }
 .projet.est-masque { display: none; }
 
-/* Avant / après */
-.ba {
-  position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--noir);
-  cursor: ew-resize; -webkit-user-select: none; user-select: none; touch-action: none;
+/* Image de la fiche de projet */
+.modale__media { background: var(--noir); }
+.modale__img {
+  /* Bandeau contenu : la photo situe le projet, mais la fiche doit rester
+     lisible sans avoir à faire défiler. */
+  display: block; width: 100%; aspect-ratio: 3 / 2; max-height: 38vh; object-fit: cover;
 }
-.ba img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  /* Sans cela, le navigateur démarre un glisser-déposer natif sur l'image
-     et annule le pointeur en cours (pointercancel), figeant le curseur. */
-  pointer-events: none; -webkit-user-drag: none; -webkit-user-select: none; user-select: none;
-}
-.ba__apres { clip-path: inset(0 0 0 50%); }
-.ba__poignee {
-  position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--blanc);
-  transform: translateX(-1px); pointer-events: none;
-}
-.ba__poignee::after {
-  content: ""; position: absolute; top: 50%; left: 50%;
-  width: 46px; height: 46px; transform: translate(-50%, -50%);
-  border: 2px solid var(--blanc); border-radius: 50%;
-  background: rgba(14,15,17,0.55);
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
-}
-.ba__poignee::before {
-  content: "◀ ▶"; position: absolute; top: 50%; left: 50%; z-index: 2;
-  transform: translate(-50%, -50%); color: var(--blanc); font-size: 0.6rem; letter-spacing: 1px;
-}
-.ba__etiq {
-  position: absolute; bottom: 16px; z-index: 3;
-  font-family: var(--font-titre); font-size: 0.66rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.16em;
-  padding: 8px 14px; background: rgba(14,15,17,0.72); color: var(--blanc);
-  pointer-events: none;
-}
-.ba__etiq--a { left: 16px; }
-.ba__etiq--b { right: 16px; background: var(--accent); color: var(--noir); }
 
 /* Modale projet */
 .modale {
@@ -670,7 +641,7 @@ p:last-child { margin-bottom: 0; }
 }
 .modale.is-ouvert { opacity: 1; visibility: visible; }
 .modale__boite {
-  background: var(--blanc); max-width: 1060px; width: 100%;
+  background: var(--blanc); max-width: 780px; width: 100%;
   max-height: 92vh; overflow-y: auto; position: relative;
   transform: translateY(14px); transition: transform 320ms;
 }

@@ -145,13 +145,10 @@
     $(".modale__lieu", modale).textContent = donnees.lieu || "—";
     $(".modale__duree", modale).textContent = donnees.duree || "—";
 
-    var ba = $(".modale .ba", modale);
-    if (ba) {
-      $(".ba__avant", ba).src = donnees.avant;
-      $(".ba__avant", ba).alt = "Avant les travaux — " + (donnees.titre || "");
-      $(".ba__apres", ba).src = donnees.apres;
-      $(".ba__apres", ba).alt = "Après les travaux — " + (donnees.titre || "");
-      poserCurseur(ba, 50);
+    var img = $(".modale__img", modale);
+    if (img) {
+      img.src = donnees.image;
+      img.alt = donnees.titre || "";
     }
     modale.classList.add("is-ouvert");
     document.documentElement.style.overflow = "hidden";
@@ -177,8 +174,7 @@
           services: p.getAttribute("data-services"),
           lieu: p.getAttribute("data-lieu"),
           duree: p.getAttribute("data-duree"),
-          avant: p.getAttribute("data-avant"),
-          apres: p.getAttribute("data-apres")
+          image: p.getAttribute("data-image")
         }, p);
       });
     });
@@ -199,39 +195,6 @@
       else if (!e.shiftKey && document.activeElement === dernier) { e.preventDefault(); premier.focus(); }
     });
   }
-
-  /* ------------------------------------------------- Comparateur avant / après */
-  function poserCurseur(ba, pct) {
-    pct = Math.max(0, Math.min(100, pct));
-    $(".ba__apres", ba).style.clipPath = "inset(0 0 0 " + pct + "%)";
-    $(".ba__poignee", ba).style.left = pct + "%";
-    ba.setAttribute("aria-valuenow", Math.round(pct));
-  }
-
-  $$(".ba").forEach(function (ba) {
-    var actif = false;
-    function depuisEvt(e) {
-      var r = ba.getBoundingClientRect();
-      var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
-      poserCurseur(ba, (x / r.width) * 100);
-    }
-    ba.addEventListener("dragstart", function (e) { e.preventDefault(); });
-    ba.addEventListener("pointerdown", function (e) {
-      e.preventDefault();
-      actif = true;
-      try { ba.setPointerCapture(e.pointerId); } catch (err) { /* pointeur non capturable */ }
-      depuisEvt(e);
-    });
-    ba.addEventListener("pointermove", function (e) { if (actif) depuisEvt(e); });
-    ba.addEventListener("pointerup", function () { actif = false; });
-    ba.addEventListener("pointercancel", function () { actif = false; });
-    ba.addEventListener("keydown", function (e) {
-      var cur = parseFloat(ba.getAttribute("aria-valuenow") || "50");
-      if (e.key === "ArrowLeft")  { poserCurseur(ba, cur - 4); e.preventDefault(); }
-      if (e.key === "ArrowRight") { poserCurseur(ba, cur + 4); e.preventDefault(); }
-    });
-    poserCurseur(ba, 50);
-  });
 
   /* --------------------------------------------------------- Marquee : duplication */
   $$(".marquee__piste").forEach(function (piste) {
